@@ -23,12 +23,10 @@ class PermissionProfileController extends Controller
   {
     $profile = $this->profile->find($idProfile);
 
-    if (!$profile) {
+    if (!$profile)
       return redirect()->back();
-    }
 
     $permissions = $profile->permissions()->paginate();
-    dd($permissions);
 
     return view('andes.pages.profiles.permissions.permissions', compact('profile', 'permissions'));
   }
@@ -42,7 +40,7 @@ class PermissionProfileController extends Controller
 
     $profiles = $permission->profiles()->paginate();
 
-    return view('admin.pages.permissions.profiles.profiles', compact('permission', 'profiles'));
+    return view('andes.pages.permissions.profiles.profiles', compact('permission', 'profiles'));
   }
 
 
@@ -56,7 +54,7 @@ class PermissionProfileController extends Controller
 
     $permissions = $profile->permissionsAvailable($request->filter);
 
-    return view('admin.pages.profiles.permissions.available', compact('profile', 'permissions', 'filters'));
+    return view('andes.pages.profiles.permissions.available', compact('profile', 'permissions', 'filters'));
   }
 
 
