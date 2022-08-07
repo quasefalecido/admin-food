@@ -40,8 +40,8 @@
               </td>
               <td style="width=10px;">
                 {{-- <a href="{{ route('details.plan.index', $item->url) }}" class="btn btn-primary">Detalhes</a> --}}
-                <a href="{{ route('plans.edit', $item->url) }}" class="btn btn-info">Edit</a>
-                <a href="{{ route('plans.show', $item->url) }}" class="btn btn-warning">VER</a>
+                <a href="{{ route('plans.edit', $item->url) }}" class="btn btn-info"><i class="fas fa-pen-alt"></i></a>
+                <a href="{{ route('plans.show', $item->url) }}" class="btn btn-warning"><i class="fas fa-eye"></i></a>
                 {{-- <a href="{{ route('plans.profiles', $item->id) }}" class="btn btn-warning">
                   <i class="fas fa-address-book"></i>
                 </a> --}}

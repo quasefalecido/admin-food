@@ -42,9 +42,7 @@ class PlanController extends Controller
     if (!$plan)
       return redirect()->back();
 
-    return view('andes.pages.plans.show', [
-      'plan' => $plan
-    ]);
+    return view('andes.pages.plans.show', compact('plan'));
   }
 
   public function destroy($url)
@@ -68,18 +66,6 @@ class PlanController extends Controller
     return redirect()->route('plans.index');
   }
 
-  public function search(Request $request)
-  {
-    $filters = $request->except('_token');
-
-    $plans = $this->repository->search($request->filter);
-
-    return view('andes.pages.plans.index', [
-      'plans' => $plans,
-      'filters' => $filters,
-    ]);
-  }
-
   public function edit($url)
   {
     $plan = $this->repository->where('url', $url)->first();
@@ -87,9 +73,7 @@ class PlanController extends Controller
     if (!$plan)
       return redirect()->back();
 
-    return view('andes.pages.plans.edit', [
-      'plan' => $plan
-    ]);
+    return view('andes.pages.plans.edit', compact('plan'));
   }
 
   public function update(StoreUpdatePlan $request, $url)
@@ -102,5 +86,14 @@ class PlanController extends Controller
     $plan->update($request->all());
 
     return redirect()->route('plans.index');
+  }
+
+  public function search(Request $request)
+  {
+    $filters = $request->except('_token');
+
+    $plans = $this->repository->search($request->filter);
+
+    return view('andes.pages.plans.index', compact('plans', 'filters'));
   }
 }
