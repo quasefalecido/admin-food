@@ -31,7 +31,19 @@ Route::prefix('andes')
      */
     Route::resource('profiles', 'ACL\ProfileController');
     Route::any('profiles/search', 'ACL\ProfileController@search')->name('profiles.search');
-
+    /**
+     * Routers Profiles
+     */
+    Route::resource('permissions', 'ACL\PermissionController');
+    Route::any('permissions/search', 'ACL\PermissionController@search')->name('permissions.search');
+    /**
+     * Permission x Profile
+     */
+    Route::get('profiles/{id}/permission/{idPermission}/detach', 'ACL\PermissionProfileController@detachPermissionProfile')->name('profiles.permission.detach');
+    Route::post('profiles/{id}/permissions', 'ACL\PermissionProfileController@attachPermissionsProfile')->name('profiles.permissions.attach');
+    Route::any('profiles/{id}/permissions/create', 'ACL\PermissionProfileController@permissionsAvailable')->name('profiles.permissions.available');
+    Route::get('profiles/{id}/permissions', 'ACL\PermissionProfileController@permissions')->name('profiles.permissions');
+    Route::get('permissions/{id}/profile', 'ACL\PermissionProfileController@profiles')->name('permissions.profiles');
     /**
      * Plan x Profile
      */

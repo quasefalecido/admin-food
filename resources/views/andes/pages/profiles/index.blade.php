@@ -34,21 +34,22 @@
           </tr>
         </thead>
         <tbody>
-          @foreach ($profiles as $profile)
+          @foreach ($profiles as $item)
             <tr>
               <td>
-                {{ $profile->name }}
+                {{ $item->name }}
               </td>
               <td style="width=10px;">
-                <a href="{{ route('profiles.edit', $profile->id) }}" class="btn btn-info">
+                <a href="{{ route('profiles.edit', $item->id) }}" class="btn btn-info">
                   <i class="fas fa-pen-alt"></i>
                 </a>
-                <a href="{{ route('profiles.show', $profile->id) }}" class="btn btn-warning">
+                <a href="{{ route('profiles.show', $item->id) }}" class="btn btn-warning">
                   <i class="fas fa-eye"></i>
                 </a>
-                {{-- <a href="{{ route('profiles.permissions', $profile->id) }}" class="btn btn-warning"><i
-                    class="fas fa-lock"></i></a>
-                <a href="{{ route('profiles.plans', $profile->id) }}" class="btn btn-info"><i
+                <a href="{{ route('profiles.permissions', $item->id) }}" class="btn btn-warning">
+                  <i class="fas fa-lock"></i>
+                </a>
+                {{-- <a href="{{ route('profiles.plans', $profile->id) }}" class="btn btn-info"><i
                     class="fas fa-list-alt"></i></a> --}}
               </td>
             </tr>
