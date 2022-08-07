@@ -225,11 +225,69 @@ return [
     */
 
   'menu' => [
-    // Navbar items:
     [
-      'type'         => 'navbar-search',
-      'text'         => 'search',
-      'topnav_right' => true,
+      'text' => 'Home',
+      'url'  => 'andes',
+      'icon' => 'fas fa-tachometer-alt',
+    ],
+    [
+      'text' => 'Empresas',
+      'url'  => 'andes/tenants',
+      'icon' => 'fas fa-building',
+      // 'can'  =>  'tenants',
+    ],
+    [
+      'text' => 'Planos',
+      'url'  => 'andes/plans',
+      'icon' => 'fas fa-list-alt',
+      // 'can'  =>  'plans',
+    ],
+    [
+      'text' => 'Perfis',
+      'url'  => 'andes/profiles',
+      'icon' => 'fas fa-address-book',
+      // 'can'  =>  'profiles',
+    ],
+    [
+      'text' => 'Cargos',
+      'url'  => 'andes/roles',
+      'icon' => 'fas fa-address-card',
+      // 'can'  =>  'roles',
+    ],
+    [
+      'text' => 'Permissões',
+      'url'  => 'andes/permissions',
+      'icon' => 'fas fa-lock',
+      // 'can'  =>  'permissions',
+    ],
+    [
+      'text' => 'Usuários',
+      'url'  => 'andes/users',
+      'icon' => 'fas fa-users',
+      // 'can'  =>  'users',
+    ],
+    [
+      'text' => 'Categorias',
+      'url'  => 'andes/categories',
+      'icon' => 'fas fa-layer-group',
+      // 'can'  =>  'categories',
+    ],
+    [
+      'text' => 'Produtos',
+      'url'  => 'andes/products',
+      'icon' => 'fas fa-hamburger',
+      // 'can'  =>  'products',
+    ],
+    [
+      'text' => 'Mesas',
+      'url'  => 'andes/tables',
+      'icon' => 'fas fa-tablet',
+      // 'can'  =>  'tables',
+    ],
+    [
+      'text' => 'Pedidos',
+      'url'  => 'andes/orders',
+      'icon' => 'fas fa-utensils',
     ],
   ],
 
