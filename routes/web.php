@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Andes\ACL\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('andes')
@@ -25,6 +26,12 @@ Route::prefix('andes')
     Route::get('plans/{url}/details/{idDetail}/edit', 'DetailPlanController@edit')->name('details.plan.edit');
     Route::post('plans/{url}/details', 'DetailPlanController@store')->name('details.plan.store');
     Route::get('plans/{url}/details', 'DetailPlanController@index')->name('details.plan.index');
+    /**
+     * Routers Profiles
+     */
+    Route::resource('profiles', 'ACL\ProfileController');
+    Route::any('profiles/search', 'ACL\ProfileController@search')->name('profiles.search');
+
     /**
      * Plan x Profile
      */

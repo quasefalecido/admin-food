@@ -39,9 +39,15 @@
                 R$ {{ number_format($item->price, 2, ',', '.') }}
               </td>
               <td style="width=10px;">
-                <a href="{{ route('details.plan.index', $item->url) }}" class="btn btn-primary"><i class="fas fa-list"></i></a>
-                <a href="{{ route('plans.edit', $item->url) }}" class="btn btn-info"><i class="fas fa-pen-alt"></i></a>
-                <a href="{{ route('plans.show', $item->url) }}" class="btn btn-warning"><i class="fas fa-eye"></i></a>
+                <a href="{{ route('details.plan.index', $item->url) }}" class="btn btn-primary">
+                  <i class="fas fa-list"></i>
+                </a>
+                <a href="{{ route('plans.edit', $item->url) }}" class="btn btn-info">
+                  <i class="fas fa-pen-alt"></i>
+                </a>
+                <a href="{{ route('plans.show', $item->url) }}" class="btn btn-warning">
+                  <i class="fas fa-eye"></i>
+                </a>
                 {{-- <a href="{{ route('plans.profiles', $item->id) }}" class="btn btn-warning">
                   <i class="fas fa-address-book"></i>
                 </a> --}}
