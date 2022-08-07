@@ -58,3 +58,7 @@ Route::prefix('andes')
  * Auth Routes
  */
 Auth::routes();
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
