@@ -9,82 +9,81 @@ use Illuminate\Http\Request;
 
 class PlanProfileController extends Controller
 {
-    protected $plan, $profile;
+  protected $plan, $profile;
 
-    public function __construct(Plan $plan, Profile $profile)
-    {
-        $this->plan = $plan;
-        $this->profile = $profile;
+  public function __construct(Plan $plan, Profile $profile)
+  {
+    $this->plan = $plan;
+    $this->profile = $profile;
 
-        $this->middleware(['can:plans']);
+    // $this->middleware(['can:plans']);
+  }
+
+  public function profiles($idPlan)
+  {
+    if (!$plan = $this->plan->find($idPlan))
+      return redirect()->back();
+
+    $profiles = $plan->profiles()->paginate();
+
+    return view('andes.pages.plans.profiles.profiles', compact('plan', 'profiles'));
+  }
+
+
+  public function plans($idProfile)
+  {
+    if (!$profile = $this->profile->find($idProfile)) {
+      return redirect()->back();
     }
 
-    public function profiles($idPlan)
-    {
-        if (!$plan = $this->plan->find($idPlan)) {
-            return redirect()->back();
-        }
+    $plans = $profile->plans()->paginate();
 
-        $profiles = $plan->profiles()->paginate();
+    return view('andes.pages.profiles.plans.plans', compact('profile', 'plans'));
+  }
 
-        return view('admin.pages.plans.profiles.profiles', compact('plan', 'profiles'));
+
+  public function profilesAvailable(Request $request, $idPlan)
+  {
+    if (!$plan = $this->plan->find($idPlan)) {
+      return redirect()->back();
     }
 
+    $filters = $request->except('_token');
 
-    public function plans($idProfile)
-    {
-        if (!$profile = $this->profile->find($idProfile)) {
-            return redirect()->back();
-        }
+    $profiles = $plan->profilesAvailable($request->filter);
 
-        $plans = $profile->plans()->paginate();
+    return view('andes.pages.plans.profiles.available', compact('plan', 'profiles', 'filters'));
+  }
 
-        return view('admin.pages.profiles.plans.plans', compact('profile', 'plans'));
+
+  public function attachProfilesPlan(Request $request, $idPlan)
+  {
+    if (!$plan = $this->plan->find($idPlan)) {
+      return redirect()->back();
     }
 
-
-    public function profilesAvailable(Request $request, $idPlan)
-    {
-        if (!$plan = $this->plan->find($idPlan)) {
-            return redirect()->back();
-        }
-
-        $filters = $request->except('_token');
-
-        $profiles = $plan->profilesAvailable($request->filter);
-
-        return view('admin.pages.plans.profiles.available', compact('plan', 'profiles', 'filters'));
+    if (!$request->profiles || count($request->profiles) == 0) {
+      return redirect()
+        ->back()
+        ->with('info', 'Precisa escolher pelo menos um plano');
     }
 
+    $plan->profiles()->attach($request->profiles);
 
-    public function attachProfilesPlan(Request $request, $idPlan)
-    {
-        if (!$plan = $this->plan->find($idPlan)) {
-            return redirect()->back();
-        }
+    return redirect()->route('plans.profiles', $plan->id);
+  }
 
-        if (!$request->profiles || count($request->profiles) == 0) {
-            return redirect()
-                        ->back()
-                        ->with('info', 'Precisa escolher pelo menos um plano');
-        }
+  public function detachProfilePlan($idPlan, $idProfile)
+  {
+    $plan = $this->plan->find($idPlan);
+    $profile = $this->profile->find($idProfile);
 
-        $plan->profiles()->attach($request->profiles);
-
-        return redirect()->route('plans.profiles', $plan->id);
+    if (!$plan || !$profile) {
+      return redirect()->back();
     }
 
-    public function detachProfilePlan($idPlan, $idProfile)
-    {
-        $plan = $this->plan->find($idPlan);
-        $profile = $this->profile->find($idProfile);
+    $plan->profiles()->detach($profile);
 
-        if (!$plan || !$profile) {
-            return redirect()->back();
-        }
-
-        $plan->profiles()->detach($profile);
-
-        return redirect()->route('plans.profiles', $plan->id);
-    }
+    return redirect()->route('plans.profiles', $plan->id);
+  }
 }

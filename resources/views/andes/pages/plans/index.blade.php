@@ -7,7 +7,12 @@
     <li class="breadcrumb-item"><a href="{{ route('andes.dashboard.index') }}">Dashboard</a></li>
     <li class="breadcrumb-item active"><a href="{{ route('plans.index') }}">Planos</a></li>
   </ol>
-  <h1>Planos <a href="{{ route('plans.create') }}" class="btn btn-dark"><i class="fas fa-plus-square"></i></a></h1>
+  <h1>
+    Planos
+    <a href="{{ route('plans.create') }}" class="btn btn-dark">
+      <i class="fas fa-plus-square"></i>
+    </a>
+  </h1>
 @stop
 
 @section('content')
@@ -48,9 +53,9 @@
                 <a href="{{ route('plans.show', $item->url) }}" class="btn btn-warning">
                   <i class="fas fa-eye"></i>
                 </a>
-                {{-- <a href="{{ route('plans.profiles', $item->id) }}" class="btn btn-warning">
+                <a href="{{ route('plans.profiles', $item->id) }}" class="btn btn-warning">
                   <i class="fas fa-address-book"></i>
-                </a> --}}
+                </a>
               </td>
             </tr>
           @endforeach
