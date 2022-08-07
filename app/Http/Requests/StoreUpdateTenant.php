@@ -23,7 +23,7 @@ class StoreUpdateTenant extends FormRequest
      */
     public function rules()
     {
-        $id = $this->segment(3);
+        $id = $this->segment(2);
 
         $rules = [
             'name' => ['required', 'min:3', 'max:255', "unique:tenants,name,{$id},id"],

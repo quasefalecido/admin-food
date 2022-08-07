@@ -6,13 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class DetailPlan extends Model
 {
-    protected $table = 'details_plan';
+  protected $fillable = ['name', 'details_plan', 'plan_id'];
 
-    protected $fillable = ['name'];
-
-
-    public function plan()
-    {
-        $this->belongsTo(Plan::class);
-    }
+  public function plan()
+  {
+    return $this->belongsTo(Plan::class);
+  }
 }

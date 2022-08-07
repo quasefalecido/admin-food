@@ -23,7 +23,7 @@ class StoreUpdateUser extends FormRequest
      */
     public function rules()
     {
-        $id = $this->segment(3);
+        $id = $this->segment(2);
 
         $rules = [
             'name' => ['required', 'string', 'min:3', 'max:255'],

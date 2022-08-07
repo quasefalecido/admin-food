@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\ACL;
+namespace App\Http\Controllers\Andes\ACL;
 
 use App\Http\Controllers\Controller;
 use App\Models\Plan;

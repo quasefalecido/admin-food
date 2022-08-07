@@ -24,7 +24,7 @@ class StoreUpdateProduct extends FormRequest
      */
     public function rules()
     {
-        $id = $this->segment(3);
+        $id = $this->segment(2);
 
         $rules = [
             'title' => [
