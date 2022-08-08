@@ -41,7 +41,7 @@ class AppServiceProvider extends ServiceProvider
   public function boot()
   {
     Plan::observe(PlanObserver::class);
-    // Tenant::observe(TenantObserver::class);
+    Tenant::observe(TenantObserver::class);
     // Category::observe(CategoryObserver::class);
     // Product::observe(ProductObserver::class);
     // Client::observe(ClientObserver::class);
